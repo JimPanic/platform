@@ -1,0 +1,36 @@
+{
+  "name": "platform",
+  "version": "0.1.0",
+  "description": "A set of JavaScript modules and functions to work with builtin types in a functional manner.",
+  "author": "Alexander Pánek <a.panek@brainsware.org> (http://brainsware.org)",
+  "keywords": [
+    "platform",
+    "functional",
+    "array",
+    "hashes",
+    "objects",
+    "types"
+  ],
+  "homepage": "https://git.esotericsystems.at/JimPanic/platform",
+  "bugs": {
+    "url": "https://git.esotericsystems.at/JimPanic/platform/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "lib/"
+  ],
+  "main": "lib/package.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.esotericsystems.at:JimPanic/platform.git"
+  },
+  "devDependencies": {
+  	"coffee-script": "> 1.7.0"
+  },
+  "scripts": {
+	  "prepublish": "coffee -o lib -c src/array.coffee && coffee -o lib -c src/object.coffee && coffee -o lib -c src/types.coffee && coffee -o lib -c src/with_defaults.coffee && coffee -o lib -c src/package.coffee"
+  }
+}

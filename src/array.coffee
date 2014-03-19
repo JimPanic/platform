@@ -6,6 +6,8 @@ A = {
   # and is considered the base to concatinate to.
   #
   # NOTE: This is a composable wrapper for `Array.concat`
+  #
+  # TODO: Verify whether this actually makes sense and is curryable.
   concat: (args..., array) -> array.concat.apply(null, args)
 
   # Iterate over all elements of given array.
@@ -20,6 +22,14 @@ A = {
     array.forEach(fn)
     
     return undefined
+
+  # Compares length & value equality of two arrays.
+  #
+  # NOTE: This method also takes the order into account.
+  equals: (a, b) ->
+    return false if a.length != b.length
+
+    a.reduce (previous, current, i) -> return previous && b[i] == current
 
   # Composable wrapper for `Array.every`
   every: (fn, array) -> array.every(fn)

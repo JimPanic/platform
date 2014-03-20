@@ -1,12 +1,15 @@
+type_of = (x) -> x.constructor.name
+
 is_a_uncurried = (t, x) ->
-  unless t.constructor.name is "String"
+  unless type_of(t) is "String"
     console.log 'WARNING: Given type must be a string as in: is_a("Object", obj)'
-    console.log 'Given: ', typeof t
+    console.log 'Given: ', type_of(t)
+
     return false
 
   return false unless x?
 
-  x.constructor.name is t
+  type_of(x) is t
 
 is_a = (type, x) ->
   if 1 is arguments.length
@@ -35,3 +38,5 @@ module.exports =
   is_null      : (x) -> x is null
   is_undefined : (x) -> x is undefined
   is_nan       : (x) -> x is NaN
+
+  type_of      : type_of

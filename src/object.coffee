@@ -1,4 +1,5 @@
 A = require './array'
+T = require './types'
 
 O = {
   # Iterate over all key-value pairs one by one.
@@ -7,7 +8,7 @@ O = {
   #  * value
   #  * key (index)
   #  * object
-  # 
+  #
   # `each` always returns undefined.
   #
   # NOTE: There is no way to stop/break an iteration done with `each`. Use
@@ -20,6 +21,34 @@ O = {
     A.each(wrapped(object), Object.keys(object))
 
     return undefined
+
+  # Compare (simple, one-level) equality of two objects.
+  #
+  # NOTE: This only compares keys & values on the first level.
+  #       - Arrays are compared with `A.equals`,
+  #       - Object values are not compared at all, it is just ensured that both
+  #         values are objects.
+  #
+  #       The above seems like a reasonable choice in theory. If practice shows
+  #       otherwise, we need to adapt to provide more (or even less)
+  #       sophisticated equality checks.
+  equals: (a, b) ->
+    return false unless T.is_object(a) && T.is_object(b)
+
+    console.log T.type_of(a), T.type_of(b)
+
+    return false if keys_a.length != keys_b.length
+    return false unless A.equals(keys_a, keys_b)
+
+    fn = (previous, value, key, obj) ->
+      return false unless T.type_of(value) == T.type_of(b[key])
+
+      return previous && A.equals(value, b[key]) if T.is_array(value)
+      return previous if T.is_object(value)
+
+      return previous && b[key] == value
+
+    O.reduce(fn, true, a)
 
   # TODO: DOCS
   every: (fn, object) ->
@@ -57,7 +86,7 @@ O = {
   #  * value
   #  * key (index)
   #  * object
-  #  
+  #
   # NOTE: There is no way to stop/break an iteration done with `map`. Use
   #       `Array.some` or `Array.every` if that is needed.
   map: (fn, object) ->

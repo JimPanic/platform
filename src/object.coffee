@@ -35,7 +35,8 @@ O = {
   equals: (a, b) ->
     return false unless T.is_object(a) && T.is_object(b)
 
-    console.log T.type_of(a), T.type_of(b)
+    keys_a = Object.keys(a)
+    keys_b = Object.keys(b)
 
     return false if keys_a.length != keys_b.length
     return false unless A.equals(keys_a, keys_b)
@@ -92,10 +93,19 @@ O = {
   map: (fn, object) ->
     results = {}
 
-    wrapped = (fn) ->
-      (element, index, array) -> results[index] = fn(element, index, array)
+    wrapped = (results, fn) ->
+      (element, index, array) ->
+        result = fn(element, index, array)
 
-    O.each(wrapped(fn), object)
+        # TODO: Test and verify this is common practice.
+        #       Look at Ruby/Python map code for that.
+        if T.is_array(result) && result.length == 2
+          results[result[0]] = results[result[1]]
+          return
+
+        results[index] = result
+
+    O.each(wrapped(results, fn), object)
 
     results
 

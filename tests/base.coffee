@@ -1,3 +1,5 @@
+A = require '../src/array'
+F = require '../src/functions'
 T = require '../src/types'
 
 Tests = {
@@ -37,6 +39,8 @@ Tests = {
         expected == result
 
     Tests.assert expression(input, expected), description
+
+  run: (tests) -> A.map F.args_from_array(Tests.expect), tests
 }
 
 module.exports = Tests

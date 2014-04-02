@@ -1,15 +1,12 @@
-A        = require '../src/array'
-O        = require '../src/object'
-{assert,
- expect,
- run}    = require '../tests/base'
+A    = require '../src/array'
+O    = require '../src/object'
+Test = require '../src/test'
 
 # Some test data
 a = {a:1, b:2}
 b = {c:1, d:2}
 
-map_fn = (value, key) -> "#{key} = #{value}"
-
+#map_fn = (value, key) -> "#{key} = #{value}"
 
 # The list of tests (arguments to expect)
 tests = [
@@ -26,4 +23,4 @@ console.log "Testdata:\na = {a:1, b:2}, b = {c:1, d:2}\n\n"
 print =  ({expression, description, result}) ->
   console.log "#{description}: " + (if result then 'success' else 'failed')
 
-A.each print, run(tests)
+A.each print, Test.run(tests)

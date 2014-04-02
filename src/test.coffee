@@ -2,7 +2,7 @@ A = require '../src/array'
 F = require '../src/functions'
 T = require '../src/types'
 
-Tests = {
+Test = {
   # `fn`            - expression to check, in order to provide more
   #                   information in the output, this must be a function.
   # ` description`  - string describing the check. If empty, `fn.toString` is
@@ -38,9 +38,9 @@ Tests = {
 
         expected == result
 
-    Tests.assert expression(input, expected), description
+    Test.assert expression(input, expected), description
 
-  run: (tests) -> A.map F.args_from_array(Tests.expect), tests
+  run: (tests) -> A.map F.args_from_array(Test.expect), tests
 }
 
-module.exports = Tests
+module.exports = Test

@@ -1,6 +1,9 @@
 A = require './array'
 
 F = {
+  args_from_array: (fn) ->
+    (args) -> fn.apply null, args
+
   compose: (fns...) ->
     (args...) ->
       args = [fn.apply @, args] for fn in fns

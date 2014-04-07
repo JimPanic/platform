@@ -64,3 +64,9 @@ It aims to provide a platform to build other libraries upon as opposed to all-in
  * `partial(Function, Any...) -> Function`: Partially apply given arguments to a function (`partial(fn, 1, 2, 3) == fn(1, 2, 3, ...)`)
  * `partial_right(Function, Any...) -> Function`: Partially apply given arguments to a function, but start with the last arguments (`partial_right(fn, 1, 2, 3) == fn(..., 1, 2, 3)`)
  * `partial_reverse(Function, Any...) -> Function`: Partially apply given arguments to a function, but start with the last arguments in reversed order (`partial_reverse(fn, 1, 2, 3) == fn(..., 3, 2, 1)`)
+
+## Test functions
+
+ * `assert(Function, String) -> Object`: Creates an object with the result of given function (`{ expression: Function, description: String, result: Boolean|Error }`)
+ * `expect(Function, Any, Any[, String]) -> Object`: Runs the function with given input, compares it to the given expected output, passes it to `assert` and returns that result.
+ * `run(Array) -> Array[Object]`: Runs all given tests through `expect`

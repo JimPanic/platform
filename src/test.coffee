@@ -10,7 +10,10 @@ Test = {
   #
   # Returns a hash with expression (fn), description and the result.
   assert: (fn, description = fn.toString()) ->
-    result = fn.call()
+    try
+      result = true == fn.call()
+    catch error
+      result = error
 
     {
       expression:  fn

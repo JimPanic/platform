@@ -5,19 +5,17 @@ A = {
   # Concatinate multiple values and arrays. The last argument must be an array
   # and is considered the base to concatinate to.
   #
-  # NOTE: This is a composable wrapper for `Array.concat`
-  #
-  # TODO: Verify whether this actually makes sense and is curryable.
+  # NOTE: This is a composable wrapper for `Array.prototype.concat`
   concat: (args..., array) -> array.concat.apply(null, args)
 
   # Iterate over all elements of given array.
   #
-  # The callback parameters are the same as for `Array.forEach`:
+  # The callback parameters are the same as for `Array.prototype.forEach`:
   #  * value
   #  * index
   #  * array
   #
-  # NOTE: This is just a composable wrapper for `Array.each`.
+  # NOTE: This is just a composable wrapper for `Array.prototype.forEach`.
   each: (fn, array) ->
     array.forEach(fn)
     
@@ -31,28 +29,30 @@ A = {
 
     a.reduce (previous, current, i) -> return previous && b[i] == current
 
-  # Composable wrapper for `Array.every`
-  every: (fn, array) -> array.every(fn)
+  # Composable wrapper for `Array.prototype.every`
+  #
+  # NOTE: Instead of "falsy" or true, it always returns a Boolean value.
+  every: (fn, array) -> true == array.every(fn)
 
-  # Composable wrapper for `Array.filter`
+  # Composable wrapper for `Array.prototype.filter`
   filter: (fn, array) -> array.filter(fn)
 
   # Find out whether the array holds a given value.
   has_element: (element, array) -> -1 != array.indexOf(element)
 
-  # Composable wrapper for `Array.indexOf`
+  # Composable wrapper for `Array.prototype.indexOf`
   index_of: (element, array) -> array.indexOf(element)
 
-  # Composable wrapper for `Array.join`
+  # Composable wrapper for `Array.prototype.join`
   join: (seperator, array) -> array.join(seperator)
 
-  # Composable wrapper for `Array.lastIndexOf`
+  # Composable wrapper for `Array.prototype.lastIndexOf`
   last_index_of: (element, array) -> array.lastIndexOf(element)
 
-  # Composable wrapper for `Array.map`
+  # Composable wrapper for `Array.prototype.map`
   map: (fn, array) -> array.map(fn)
 
-  # Composable wrapper for `Array.reduce`
+  # Composable wrapper for `Array.prototype.reduce`
   reduce: (fn, initial_value, array) -> array.reduce(fn, initial_value)
 
   # Composable wrapper for `Array.reduceRight`

@@ -51,7 +51,7 @@ O = {
 
     O.reduce(fn, true, a)
 
-  # TODO: DOCS
+  # Test whether all elements pass given function.
   every: (fn, object) ->
     wrapped = (fn, object) ->
       (value, index, array) -> fn(object[value], value, object)
@@ -60,8 +60,6 @@ O = {
 
   # Filter the contents of an object by its keys and return a new object with
   # all the keys matching the filter.
-  #
-  # This is /probably/ only useful for primitive objects only holding data.
   filter: (fn, object) ->
     wrapped = (object) ->
       (new_object, key) ->
@@ -70,15 +68,15 @@ O = {
 
     A.reduce(wrapped(object), {}, A.filter(fn, Object.keys(object)))
 
-  # TODO: DOCS
+  # Check whether given object's keys include the passed key.
+  has_key: (key, object) ->
+    A.has_element(key, Object.keys(object))
+
+  # Check whether given object holds the passed value.
   has_value: (value, object) ->
     wrapped = (value) -> (v) -> v == value
 
     O.some(wrapped(value), object)
-
-  # TODO: DOCS
-  has_key: (key, object) ->
-    A.has_element(key, Object.keys(object))
 
   # Iterate over all key-value pairs one by one, store the result in a new
   # object and return it.

@@ -1,6 +1,8 @@
 A = require './array'
 
 F = {
+  id: (args...) -> args
+
   args_from_array: (fn) ->
     (args) -> fn.apply null, args
 

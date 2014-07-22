@@ -44,6 +44,10 @@ Test = {
     Test.assert expression(input, expected), description
 
   run: (tests) -> A.map F.args_from_array(Test.expect), tests
+
+  print: (result) ->
+    default_print_fn = ({expression, description, result}) ->
+      console.log "#{description}: " + (if result then 'success' else 'failed')
 }
 
 module.exports = Test

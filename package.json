@@ -19,18 +19,26 @@
   "files": [
     "lib/"
   ],
-  "main": "lib/package.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git@git.esotericsystems.at:JimPanic/platform.git"
   },
   "devDependencies": {
-  	"coffee-script": "> 1.7.0"
-  },
-  "scripts": {
-	  "prepublish": "coffee -o lib -c src/array.coffee && coffee -o lib -c src/object.coffee && coffee -o lib -c src/types.coffee && coffee -o lib -c src/with_defaults.coffee && coffee -o lib -c src/package.coffee"
+    "coffee-script": "> 1.7.0",
+    "grunt": "0.4.x",
+    "grunt-cli": ">=0.1.6",
+
+    "browserify": "*",
+
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-coffee": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-copy": "*",
+    "grunt-contrib-watch": "*",
+
+    "grunt-browserify": "*",
+    "grunt-modernizr": "*",
+    "grunt-bower-task": "git://github.com/creatorrr/grunt-bower-task.git"
   }
 }

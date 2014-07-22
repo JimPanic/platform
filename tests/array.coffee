@@ -6,8 +6,6 @@ Test = require '../src/test'
 a = {a:1, b:2}
 b = {c:1, d:2}
 
-#map_fn = (value, key) -> "#{key} = #{value}"
-
 # The list of tests (arguments to expect)
 tests = [
   [ O.equals,    [a, a],   true,  'O.equals(a, a)\t\t== true\t\t'     ],
@@ -20,7 +18,8 @@ tests = [
 
 console.log "Testdata:\na = {a:1, b:2}, b = {c:1, d:2}\n\n"
 
-print =  ({expression, description, result}) ->
-  console.log "#{description}: " + (if result then 'success' else 'failed')
+module.exports = {
+  tests: tests
+}
 
-A.each print, Test.run(tests)
+A.each Test.print, Test.run(tests)

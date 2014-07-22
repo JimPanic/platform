@@ -11,9 +11,9 @@
     "objects",
     "types"
   ],
-  "homepage": "https://git.esotericsystems.at/JimPanic/platform",
+  "homepage": "https://github.com/JimPanic/platform",
   "bugs": {
-    "url": "https://git.esotericsystems.at/JimPanic/platform/issues"
+    "url": "https://github.com/JimPanic/platform/issues"
   },
   "license": "MIT",
   "files": [
@@ -22,7 +22,7 @@
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "git@git.esotericsystems.at:JimPanic/platform.git"
+    "url": "https://github.com/JimPanic/platform.git"
   },
   "devDependencies": {
     "coffee-script": "> 1.7.0",

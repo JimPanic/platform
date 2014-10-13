@@ -75,6 +75,70 @@ A = {
 module.exports = A;
 
 },{}],2:[function(require,module,exports){
+var A, F,
+  __slice = [].slice;
+
+A = require('./array');
+
+F = {
+  id: function(arg) {
+    return arg;
+  },
+  args_from_array: function(fn) {
+    return function(args) {
+      return fn.apply(this, args);
+    };
+  },
+  compose: function() {
+    var fns;
+    fns = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+    return function() {
+      var args, fn, _i, _len;
+      args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      for (_i = 0, _len = fns.length; _i < _len; _i++) {
+        fn = fns[_i];
+        args = [fn.apply(this, args)];
+      }
+      return args[0];
+    };
+  },
+  sequence: function() {
+    var fns;
+    fns = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+    return F.compose(A.reverse(fns));
+  },
+  partial: function() {
+    var bound, fn;
+    fn = arguments[0], bound = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+    return function() {
+      var args;
+      args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      return fn.apply(this, A.concat(bound, args));
+    };
+  },
+  partial_right: function() {
+    var bound, fn;
+    fn = arguments[0], bound = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+    return function() {
+      var args;
+      args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      return fn.apply(this, A.concat(args, bound));
+    };
+  },
+  partial_reverse: function() {
+    var bound, fn;
+    fn = arguments[0], bound = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+    return function() {
+      var args;
+      args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      return fn.apply(this, A.concat(args, A.reverse(bound)));
+    };
+  }
+};
+
+module.exports = F;
+
+},{"./array":1}],3:[function(require,module,exports){
 var A, O, T;
 
 A = require('./array');
@@ -189,15 +253,16 @@ O = {
 
 module.exports = O;
 
-},{"./array":1,"./types":4}],3:[function(require,module,exports){
+},{"./array":1,"./types":5}],4:[function(require,module,exports){
 module.exports = {
   A: require('./array'),
+  F: require('./functions'),
   O: require('./object'),
   T: require('./types'),
   defaults: require('./with_defaults')
 };
 
-},{"./array":1,"./object":2,"./types":4,"./with_defaults":5}],4:[function(require,module,exports){
+},{"./array":1,"./functions":2,"./object":3,"./types":5,"./with_defaults":6}],5:[function(require,module,exports){
 var is_a, is_a_uncurried, type_of;
 
 type_of = function(x) {
@@ -252,7 +317,7 @@ module.exports = {
   type_of: type_of
 };
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 module.exports = function(object, defaults) {
   var f;
   f = function(previous, current) {
@@ -264,4 +329,4 @@ module.exports = function(object, defaults) {
   return Object.keys(object).reduce(f, defaults);
 };
 
-},{}]},{},[3]);
+},{}]},{},[4]);

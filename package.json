@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/JimPanic/platform/issues"
   },
-  "license": "MIT",
+  "license": "Apache 2.0",
   "files": [
     "lib/"
   ],

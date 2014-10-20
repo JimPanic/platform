@@ -1,5 +1,5 @@
 {
-  "name": "platform",
+  "name": "platform-coffee",
   "version": "0.1.2",
   "description": "A set of JavaScript modules and functions to work with builtin types in a functional manner.",
   "author": "Alexander Pánek <a.panek@brainsware.org> (http://brainsware.org)",

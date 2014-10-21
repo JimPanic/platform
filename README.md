@@ -14,7 +14,7 @@ or any other ES5 compliant runtime.
 
 # License
 
-Copyright 2013 Brainsware OG
+Copyright 2014 Brainsware OG
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
